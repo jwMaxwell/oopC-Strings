@@ -2,6 +2,8 @@
 #include "oopString.h"
 #include <stdlib.h>
 
+int printf(char* format, ...);
+
 //typedef struct STRING_STRUCT {
   //char* value;
   //unsigned int length;
@@ -27,7 +29,7 @@ String *_STRING_concat(String* self, String* other) {
   for (i; i < SIZE + 1; ++i)
     temp[i] = other->value[i - self->length];
   
-  return new_string(temp);
+  return new_String(temp);
 }
 
 int _STRING_indexof(String *self, char *other) {
@@ -56,7 +58,28 @@ int _STRING_lastindexof(String *self, char *other) {
   return -1;
 }
 
-String* new_string(/*String* self, */char* value)
+int _STRING_includes(String *self, char *other) {
+  if (self->indexof(self, other) == -1)
+    return 0;
+  return 1;
+}
+
+void _STRING_print(String* self) {
+  printf("%s", self->value);
+}
+
+String* _STRING_substring(String *self, unsigned start, unsigned end) {
+  char* buffer = malloc(sizeof(char) * (end - start));
+  unsigned i;
+  unsigned j;
+  for (i = start, j = 0; i < end; ++i, ++j) {
+    buffer[j] = self->value[i];
+  }
+  buffer[j] = '\0';
+  return new_String(buffer);
+}
+
+String* new_String(char* value)
 {
   String* self = calloc(1, sizeof(struct _STRING_STRUCT));
   
@@ -66,5 +89,8 @@ String* new_string(/*String* self, */char* value)
   self->indexof     = &_STRING_indexof;
   self->cat         = &_STRING_concat;
   self->lastindexof = &_STRING_lastindexof;
+  self->includes    = &_STRING_includes;
+  self->print       = &_STRING_print;
+  self->substring   = &_STRING_substring;
   return self;
 }

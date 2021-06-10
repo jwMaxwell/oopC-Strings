@@ -8,10 +8,15 @@ struct _STRING_STRUCT {
   int (*includes)(struct _STRING_STRUCT*, char*);
   int (*indexof)(struct _STRING_STRUCT*, char*);
   int (*lastindexof)(struct _STRING_STRUCT*, char*);
+  void (*print)(struct _STRING_STRUCT*);
+  String* (*substring)(struct _STRING_STRUCT*, unsigned, unsigned);
 };
 
-String* new_string(char* value);
+String* new_String(char* value);
 char _STRING_charat(String* self, int index);
 String* _STRING_concat(String* self, String* other);
 int _STRING_indexof(String* self, char *other);
+int _STRING_includes(String* self, char *other);
 int _STRING_lastindexof(String* self, char *other);
+void _STRING_print(String* self);
+String* _STRING_substring(String* self, unsigned start, unsigned end);
