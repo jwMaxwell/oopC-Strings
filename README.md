@@ -48,4 +48,12 @@ s->print(s->cat(s, new_String("a String\n")));
 ```
 
 ## To-do
-I would like to implement a method where any datatype could be appended to the String and for ease of use, I may make an IO library so that using oopC-Strings can be a little less cumbersome
+1. IO oopC library
+2. Add method to append any datatype
+3. Add replace()
+4. Add replaceAll()
+5. Add reverse()
+6. Add toUpperCase()
+7. Add toLowerCase()
+8. Add padStart()
+9. Add padEnd()
