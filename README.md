@@ -45,6 +45,7 @@ String *s = new_String("This is ");
 s->print(s->cat(s, new_String("a String\n")));
 // prints: 
 // This is a String 
+```
 
 ## To-do
 I would like to implement a method where any datatype could be appended to the String and for ease of use, I may make an IO library so that using oopC-Strings can be a little less cumbersome
