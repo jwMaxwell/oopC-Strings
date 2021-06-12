@@ -60,6 +60,11 @@ int main() {
 
   // test reverse
   printf("reverse: %s\n", s->reverse(s)->value);
+
+  // test map
+  char ascii_inc(char t) { return ++t; };
+  char (*fnptr)(char) = &ascii_inc;
+  printf("map: %s\n", s->map(s, fnptr)->value);
   
   free(temp);
   free(s);

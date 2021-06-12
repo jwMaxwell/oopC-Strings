@@ -132,6 +132,14 @@ String* _STRING_reverse(String* self) {
   return new_String(result);
 }
 
+String* _STRING_map(String* self, char (*func)(char)) {
+  char* result = malloc(sizeof(char) * self->length);
+  for (unsigned i = 0; i < self->length; ++i)
+    result[i] = (*func)(self->value[i]);
+
+  return new_String(result);
+}
+
 String* new_String(char* value)
 {
   String* self = calloc(1, sizeof(struct _STRING_STRUCT));
@@ -149,6 +157,7 @@ String* new_String(char* value)
   self->tolower     = &_STRING_tolower;
   self->append      = &_STRING_append;
   self->reverse     = &_STRING_reverse;
+  self->map         = &_STRING_map;
   
   return self;
 }
