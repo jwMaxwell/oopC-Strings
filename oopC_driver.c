@@ -34,6 +34,32 @@ int main() {
 
   // test substring
   printf("substring(3, 8): %s\n", s->substring(s, 3, 8)->value);
+
+  // test toupper
+  printf("toupper: %s", s->toupper(s)->value);
+
+  // test tolower
+  printf("tolower: %s", s->tolower(s)->value);
+
+  // test append
+  char c = 'a';
+  void *ptr = &c;
+  printf("append c: %s\n", temp->append(temp, ptr, 'c')->value);
+  
+  int i = 123;
+  ptr = &i;
+  printf("append i: %s\n", temp->append(temp, ptr, 'i')->value);
+
+  unsigned u = 123;
+  ptr = &u;
+  printf("append u: %s\n", temp->append(temp, ptr, 'u')->value);
+
+  double f = 321.123;
+  ptr = &f;
+  printf("append f: %s\n", temp->append(temp, ptr, 'f')->value);
+
+  // test reverse
+  printf("reverse: %s\n", s->reverse(s)->value);
   
   free(temp);
   free(s);
