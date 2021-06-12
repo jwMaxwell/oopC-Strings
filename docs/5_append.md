@@ -18,10 +18,10 @@ char c = 'a';
 int i = -123;
 unsigned u = 25;
 double f = 123.321;
-String* result1 = str->append(str, &c, 'c');     // Hello, world!a
-String* result2 = str->append(str, &i, 'i');    // Hello, world!-123
-String* result3 = str->append(str, &u, 'u');      // Hello, world!25
-String* result4 = str->append(str, &f, 'f'); // Hello, world!123.321000
+String* result1 = str->append(str, &c, 'c');   // Hello, world!a
+String* result2 = str->append(str, &i, 'i');   // Hello, world!-123
+String* result3 = str->append(str, &u, 'u');   // Hello, world!25
+String* result4 = str->append(str, &f, 'f');   // Hello, world!123.321000
 ```
 
 [Next document](./6_map.md)
