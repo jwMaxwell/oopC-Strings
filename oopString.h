@@ -10,6 +10,10 @@ struct _STRING_STRUCT {
   int (*lastindexof)(struct _STRING_STRUCT*, char*);
   void (*print)(struct _STRING_STRUCT*);
   String* (*substring)(struct _STRING_STRUCT*, unsigned, unsigned);
+  String* (*toupper)(struct _STRING_STRUCT*);
+  String* (*tolower)(struct _STRING_STRUCT*);
+  String* (*append)(struct _STRING_STRUCT*, void*, char);
+  String* (*reverse)(struct _STRING_STRUCT*);
 };
 
 String* new_String(char* value);
@@ -20,3 +24,7 @@ int _STRING_includes(String* self, char *other);
 int _STRING_lastindexof(String* self, char *other);
 void _STRING_print(String* self);
 String* _STRING_substring(String* self, unsigned start, unsigned end);
+String* _STRING_toupper(String* self);
+String* _STRING_tolower(String* self);
+String* _STRING_append(String* self, void* val, char type);
+String* _STRING_reverse(String* self);
