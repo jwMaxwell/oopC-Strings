@@ -14,6 +14,7 @@ struct _STRING_STRUCT {
   String* (*tolower)(struct _STRING_STRUCT*);
   String* (*append)(struct _STRING_STRUCT*, void*, char);
   String* (*reverse)(struct _STRING_STRUCT*);
+  String* (*map)(struct _STRING_STRUCT*, char(char));
 };
 
 String* new_String(char* value);
@@ -28,3 +29,4 @@ String* _STRING_toupper(String* self);
 String* _STRING_tolower(String* self);
 String* _STRING_append(String* self, void* val, char type);
 String* _STRING_reverse(String* self);
+String* _STRING_map(String* self, char (*func)(char));
