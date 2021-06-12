@@ -3,7 +3,7 @@
 #include "oopString.h"
 
 int main() {
-  String* s = new_String("Hello, World!\n");
+  String* s = new_String("Hello, world!\n");
   String* temp = new_String("World");
   
   // test string value
