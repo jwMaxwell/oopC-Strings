@@ -1,18 +1,7 @@
-#include "string.h"
+#include <string.h>
 #include "oopString.h"
 #include <stdlib.h>
-
-int printf(char* format, ...);
-
-//typedef struct STRING_STRUCT {
-  //char* value;
-  //unsigned int length;
-  //char (*charAt)(struct STRING_STRUCT*, int);
-  //void (*cat)(struct STRING_STRUCT*, struct STRING_STRUCT*);
-  //int (*includes)(struct STRING_STRUCT*, char*);
-  //unsigned int (*indexOf)(struct STRING_STRUCT*, char*);
-  //  unsigned int (*lastIndexOf)(struct STRING_STRUCT*, char*);
-  //} String;
+#include <stdio.h>
 
 char _STRING_charat(String *self, int index) {
   return self->value[index];
@@ -76,7 +65,71 @@ String* _STRING_substring(String *self, unsigned start, unsigned end) {
     buffer[j] = self->value[i];
   }
   buffer[j] = '\0';
+
   return new_String(buffer);
+}
+
+String* _STRING_toupper(String* self) {
+  char* buffer = malloc(sizeof(char) * self->length);
+  for (unsigned i = 0; i < self->length; ++i) {
+    buffer[i] = self->value[i];
+    if (buffer[i] >= 'a' && buffer[i] <= 'z')
+      buffer[i] -= 32;
+  }
+  return new_String(buffer);
+}
+
+String* _STRING_tolower(String* self) {
+  char* buffer = malloc(sizeof(char) * self->length);
+  for (unsigned i = 0; i < self->length; ++i) {
+    buffer[i] = self->value[i];
+    if (buffer[i] >= 'A' && buffer[i] <= 'Z')
+      buffer[i] += 32;
+  }
+  return new_String(buffer);
+}
+
+String* _STRING_append(String* self, void* val, char type) {
+
+  if (type == 'c') { // see if integer method works on characters as well
+    char* result = malloc(sizeof(char) * (self->length + 1));
+    result[self->length] = '\0';
+    
+     unsigned i;
+     for (i = 0; i < self->length; ++i)
+       result[i] = self->value[i];
+     result[i] = *((char*) val);
+    
+    return new_String(result);
+
+    // snprintf(result, sizeof(char) * (self->length + 1), "%s%c", self->value, *((char*) val));
+    return new_String(result);
+  }
+  else if (type == 'i') {
+    char* result = malloc(sizeof(char) * (self->length + 10));
+    snprintf(result, sizeof(char) * (self->length + 10), "%s%d", self->value, *((int*) val));
+    return new_String(result);
+  }
+  else if (type == 'u') {
+    char* result = malloc(sizeof(char) * (self->length + 10));
+    snprintf(result, sizeof(char) * (self->length + 10), "%s%u", self->value, *((unsigned*) val));
+    return new_String(result);
+  }
+  else if (type == 'f') {
+    char* result = malloc(sizeof(char) * (self->length + 326));
+    snprintf(result, sizeof(char) * (self->length + 326), "%s%f", self->value, *((double*) val));
+    return new_String(result);
+  }
+  return self;
+}
+
+String* _STRING_reverse(String* self) {
+  char* result = malloc(sizeof(char) * self->length);
+  unsigned i, j;
+  for (i = 0, j = self->length - 1; i < self->length; ++i, --j)
+    result[i] = self->value[j];
+  
+  return new_String(result);
 }
 
 String* new_String(char* value)
@@ -92,5 +145,10 @@ String* new_String(char* value)
   self->includes    = &_STRING_includes;
   self->print       = &_STRING_print;
   self->substring   = &_STRING_substring;
+  self->toupper     = &_STRING_toupper;
+  self->tolower     = &_STRING_tolower;
+  self->append      = &_STRING_append;
+  self->reverse     = &_STRING_reverse;
+  
   return self;
 }
