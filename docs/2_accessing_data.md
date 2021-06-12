@@ -13,4 +13,4 @@ for (unsigned i = 0; i < str->length; ++i) {
 
 As you may have noticed, oopC-Strings use arrows rather than dots to access data. This is since each String must be a pointer (similar to FILE pointers).
 
-[Next document](./3_capitalization.md)
+[Next document](./3_common_methods.md)
