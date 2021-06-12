@@ -13,7 +13,11 @@ oopC-Strings have quite a number of modern features such as
 5. lastindexof()
 6. substring()
 7. print()
-8. A contructor "method"
+8. toupper()
+9. tolower()
+10. append()
+11. reverse()
+12. A contructor "method"
 
 ## How to use oopC-Strings
 Since the C programming language was not made to be an object oriented language, some of the syntax and use cases may be a little unintuitive. Each string object that is made must be a pointer, similar to a FILE pointer. 
@@ -48,4 +52,8 @@ s->print(s->cat(s, new_String("a String\n")));
 ```
 
 ## To-do
-I would like to implement a method where any datatype could be appended to the String and for ease of use, I may make an IO library so that using oopC-Strings can be a little less cumbersome
+1. IO oopC library
+2. Add replace()
+3. Add replaceAll()
+4. Add padStart()
+5. Add padEnd()
